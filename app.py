@@ -39,7 +39,7 @@ def quiz():
             return redirect(url_for('quiz'))
 
     question = random.choice(QUIZ_DATA[category])
-    session['answer'] = question['answer']89
+    session['answer'] = question['answer']
     return render_template('quiz.html', category=category, question=question)
 
 @app.route('/result')
