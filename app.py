@@ -5,8 +5,12 @@ import random
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-with open('quiz_data.json', encoding='utf-8') as f:
-    QUIZ_DATA = json.load(f)
+
+import os
+
+basedir = os.path.dirname(__file__)
+with open(os.path.join(basedir, 'quiz_data.json'), encoding='utf-8') as f:
+    quiz_data = json.load(f)
 
 @app.route('/')
 def home():
