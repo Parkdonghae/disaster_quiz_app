@@ -6,10 +6,16 @@
 </head>
 <body>
   <h1>퀴즈 ({}/{})</h1>
-  <form method="post">
+  
+  {% if question %}
     <p>{}</p>
+  {% endif %}
+  
+  <form method="post">
     {% for option in options %}
-      <label><input type="radio" name="option" value="{{ option }}" required> {{ option }}</label><br>
+      <label>
+        <xinput type="radio" name="option" value="{}" required> {}
+      </label><br>
     {% endfor %}
     <button type="submit">제출</button>
   </form>
