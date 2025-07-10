@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>카테고리 선택</title>
-</head>
+<!doctype html>
+<html>
+<head><title>퀴즈</title></head>
 <body>
-    <h1>카테고리 선택</h1>
-    <ul>
-        {% for category in categories %}
-            <li><a target='_blank' href="{{ url_for('start', category=category) }}">{}</a></li>
-        {% endfor %}
-    </ul>
+  <h1>퀴즈 {}/{}</h1>
+  <form method="post">
+    <p>{}</p>
+    {% for option in question.options %}
+      <label><xinput type="radio" name="option" value="{}"> {}</label><br>
+    {% endfor %}
+    <button type="submit">제출</button>
+  </form>
 </body>
 </html>
