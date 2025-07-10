@@ -1,12 +1,14 @@
-
-<!doctype html>
-<html>
-<head><title>카테고리 선택</title></head>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>카테고리 선택</title>
+</head>
 <body>
   <h1>카테고리 선택</h1>
   <ul>
-    {% for cat in categories %}
-      <li><a target='_blank' href="{{ url_for('start', category=cat) }}">{}</a></li>
+    {% for category in categories %}
+      <li><a target='_blank' href="{{ url_for('start', category=category) }}">{}</a></li>
     {% endfor %}
   </ul>
 </body>

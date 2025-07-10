@@ -1,12 +1,15 @@
-<!doctype html>
-<html>
-<head><title>퀴즈</title></head>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>퀴즈</title>
+</head>
 <body>
-  <h1>퀴즈 {}/{}</h1>
+  <h1>퀴즈 ({}/{})</h1>
   <form method="post">
     <p>{}</p>
-    {% for option in question.options %}
-      <label><xinput type="radio" name="option" value="{}"> {}</label><br>
+    {% for option in options %}
+      <label><xinput type="radio" name="option" value="{}" required> {}</label><br>
     {% endfor %}
     <button type="submit">제출</button>
   </form>
