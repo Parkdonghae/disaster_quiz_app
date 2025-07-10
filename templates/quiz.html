@@ -9,7 +9,7 @@
   <form method="post">
     <p>{}</p>
     {% for option in options %}
-      <label><xinput type="radio" name="option" value="{}" required> {}</label><br>
+      <label><input type="radio" name="option" value="{{ option }}" required> {{ option }}</label><br>
     {% endfor %}
     <button type="submit">제출</button>
   </form>
