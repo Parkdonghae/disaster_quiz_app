@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -6,16 +7,10 @@
 </head>
 <body>
   <h1>퀴즈 ({}/{})</h1>
-  
-  {% if question %}
-    <p>{}</p>
-  {% endif %}
-  
   <form method="post">
+    <p>{{ question }}</p>
     {% for option in options %}
-      <label>
-        <xinput type="radio" name="option" value="{}" required> {}
-      </label><br>
+      <label><input type="radio" name="option" value="{}" required> {}</label><br>
     {% endfor %}
     <button type="submit">제출</button>
   </form>
