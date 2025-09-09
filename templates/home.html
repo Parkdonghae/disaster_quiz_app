@@ -50,7 +50,7 @@
     <ul>
         {% for category in categories %}
         <li>
-            <a href="{{ url_for('start', category=category) }}">{{ category }}</a>
+            <a href="/quiz/ {{catergory['id']}}">{{catergory['name']}}</a>
         </li>
         {% endfor %}
     </ul>
