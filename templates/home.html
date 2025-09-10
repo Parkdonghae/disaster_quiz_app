@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -53,11 +52,7 @@
     <h1>카테고리 선택</h1>
     <ul>
         {% for category in categories %}
-            <li>
-                <a target='_blank' href="{{ url_for('start', category=category) }}">
-                    {}
-                </a>
-            </li>
+            <li> <a href="{{ url_for('start', category=category) }}">{{ category }} </a> </li>
         {% endfor %}
     </ul>
 </body>
