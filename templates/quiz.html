@@ -65,14 +65,11 @@
   </style>
 </head>
 <body>
-  <h1>퀴즈 ({}/{})</h1>
+   <h1>퀴즈 ({}/{})</h1>
   <form method="post">
-    <p class="question-text">{}</p>
+    <p>{{ question }}</p>
     {% for option in options %}
-      <label class="option-card">
-        <xinput type="radio" name="option" value="{}" required>
-        {}
-      </label>
+      <label><input type="radio" name="option" value="{{ option }}" required> {{ option }}</label><br>
     {% endfor %}
     <button type="submit">제출</button>
   </form>
