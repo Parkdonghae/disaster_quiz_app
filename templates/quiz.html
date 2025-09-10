@@ -1,41 +1,78 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>퀴즈</title>
- <style>
+  <style>
     body {
       font-family: Arial, sans-serif;
       font-size: 18px;
       padding: 20px;
       line-height: 1.6;
+      background-color: #f0f6fc;
     }
+
     h1 {
       font-size: 24px;
+      text-align: center;
     }
-    label {
-      display: block;
-      margin: 10px 0;
+
+    p.question-text {
       font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
     }
+
+    label.option-card {
+      display: block;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin: 10px 0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background-color: #fff;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+    }
+
+    label.option-card:hover {
+      border-color: #4CAF50;
+      background-color: #eafaf1;
+    }
+
     xinput[type="radio"] {
-      transform: scale(1.5);
       margin-right: 10px;
+      transform: scale(1.4);
+      vertical-align: middle;
     }
+
     button {
       font-size: 18px;
-      padding: 10px 20px;
+      padding: 12px 24px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto 0;
+    }
+
+    button:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
 <body>
   <h1>퀴즈 ({}/{})</h1>
   <form method="post">
-    <p>{{ question }}</p>
+    <p class="question-text">{}</p>
     {% for option in options %}
-      <label><input type="radio" name="option" value="{{ option }}" required> {{ option }}</label><br>
+      <label class="option-card">
+        <xinput type="radio" name="option" value="{}" required>
+        {}
+      </label>
     {% endfor %}
     <button type="submit">제출</button>
   </form>
