@@ -2,66 +2,89 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>결과 보기</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      font-size: 18px;
-      padding: 30px;
-      background-color: #f8f9fa;
-      line-height: 1.6;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 28px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-
-    p {
-      font-size: 20px;
-      margin: 20px 0;
-    }
-
-    a {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 10px 25px;
-      font-size: 18px;
-      background-color: #007bff;
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background-color 0.3s;
-    }
-
-    a:hover {
-      background-color: #0056b3;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결과 보기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f6f6fc;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 20px;
+            margin: 15px 0;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 18px;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+        }
+        .wrong-section {
+            margin-top: 30px;
+        }
+        .wrong-answers {
+            display: none; /* 기본적으로 숨김 */
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            background: #fff;
+            border-radius: 8px;
+        }
+        button.toggle-btn {
+            margin-top: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .wrong-item {
+            margin-bottom: 15px;
+        }
+        .wrong-item strong {
+            color: #d9534f; /* 틀린 답 빨강 */
+        }
+        .wrong-item em {
+            color: #5cb85c; /* 정답 초록 */
+        }
+    </style>
+    <script>
+        function toggleWrongAnswers() {
+            const section = document.getElementById("wrongAnswers");
+            section.style.display = section.style.display === "none" ? "block" : "none";
+        }
+    </script>
 </head>
 <body>
-  <h1>결과 보기</h1>
-  <p>총 {{ total }}문제 중 {{ score }}문제 정답!</p>
-  <a target='_blank' href="{{ url_for('home') }}">처음으로</a>
+    <h1>결과 보기</h1>
+    <p>총 {}문제 중 {}문제 정답!</p>
+    <a target='_blank' href="{{ url_for('home') }}">처음으로</a>
 
-  <!-- 틀린 문제 보기 영역 -->
-  <h2>틀린 문제 확인</h2>
-  {% if wrong_answers %}
-      <ul>
-      {% for w in wrong_answers %}
-          <li>
-              <strong>{{ w.question }}</strong><br>
-              ❌ 선택: <span style="color:red;">{{ w.selected }}</span><br>
-              ✅ 정답: <span style="color:green;">{{ w.correct }}</span>
-          </li>
-      {% endfor %}
-      </ul>
-  {% else %}
-      <p>모든 문제를 맞혔습니다! 🎉</p>
-  {% endif %}
+    <div class="wrong-section">
+        <button class="toggle-btn" xonclick="toggleWrongAnswers()">틀린 문제 확인</button>
+        <div id="wrongAnswers" class="wrong-answers">
+            {% for item in wrong_answers %}
+            <div class="wrong-item">
+                <p><strong>문제:</strong> {}</p>
+                <p>❌ 선택: <strong>{}</strong></p>
+                <p>✅ 정답: <em>{}</em></p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>
