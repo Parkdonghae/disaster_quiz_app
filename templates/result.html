@@ -9,28 +9,43 @@
     body {
       font-family: Arial, sans-serif;
       font-size: 18px;
-      padding: 20px;
+      padding: 30px;
+      background-color: #f8f9fa;
       line-height: 1.6;
+      text-align: center;
     }
+
     h1 {
-      font-size: 24px;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
     }
+
     p {
       font-size: 20px;
-      margin: 15px 0;
+      margin: 20px 0;
     }
+
     a {
       display: inline-block;
-      margin-top: 20px;
+      margin-top: 30px;
+      padding: 10px 25px;
       font-size: 18px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 8px;
       text-decoration: none;
-      color: #007BFF;
+      transition: background-color 0.3s;
+    }
+
+    a:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
   <h1>결과 보기</h1>
-  <p>총 {}문제 중 {}문제 정답!</p>
+  <p>총 {{ total }}문제 중 {{ score }}문제 정답!</p>
   <a target='_blank' href="{{ url_for('home') }}">처음으로</a>
 </body>
 </html>
