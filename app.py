@@ -39,6 +39,12 @@ def quiz():
         correct = questions[current]['answer']
         if selected == correct:
             session['score'] += 1
+        else: wrong_answers = 
+            session.get('wrong_answers', [ ]) wrong_answers.append( {
+                "question": questions[current]['question'], 
+                 "selected": selected, , "correct": corret })
+            session['wrong_answers'] = wrong_answers
+
         session['current'] += 1
         current = session['current']
 
@@ -53,4 +59,5 @@ def result():
     score = session.get('score', 0)
     category = session.get('category')
     total = len(QUIZ_DATA.get(category, []))
-    return render_template('result.html', score=score, total=total)
+    wrong_answers = session.get('wrong_answers',[])  
+    return render_template('result.html', score=score, total=total, wrong_answers=wrong_answers)

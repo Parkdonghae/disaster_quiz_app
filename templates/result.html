@@ -47,5 +47,21 @@
   <h1>결과 보기</h1>
   <p>총 {{ total }}문제 중 {{ score }}문제 정답!</p>
   <a target='_blank' href="{{ url_for('home') }}">처음으로</a>
+
+  <!-- 틀린 문제 보기 영역 -->
+  <h2>틀린 문제 확인</h2>
+  {% if wrong_answers %}
+      <ul>
+      {% for w in wrong_answers %}
+          <li>
+              <strong>{}</strong><br>
+              ❌ 선택: <span style="color:red;">{}</span><br>
+              ✅ 정답: <span style="color:green;">{}</span>
+          </li>
+      {% endfor %}
+      </ul>
+  {% else %}
+      <p>모든 문제를 맞혔습니다! 🎉</p>
+  {% endif %}
 </body>
 </html>
