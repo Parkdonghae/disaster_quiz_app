@@ -23,6 +23,7 @@ def start(category):
     session['category'] = category
     session['score'] = 0
     session['current'] = 0
+    session['wrong'] = 0
     return redirect(url_for('quiz'))
 
 @app.route('/quiz', methods=['GET', 'POST'])
@@ -39,12 +40,10 @@ def quiz():
         correct = questions[current]['answer']
         if selected == correct:
             session['score'] += 1
-        else: wrong_answers = 
-            session.get('wrong_answers', [ ]) wrong_answers.append( {
-                "question": questions[current]['question'], 
-                 "selected": selected, , "correct": corret })
-            session['wrong_answers'] = wrong_answers
-
+        else: 
+            wrong_list= session_get('wrong', []) wrong_list.append({'question' : questions[current]['question'], 
+                 'selected': selected, , 'correct': correct })
+        session['wrong'] = wrong_list
         session['current'] += 1
         current = session['current']
 
@@ -59,5 +58,5 @@ def result():
     score = session.get('score', 0)
     category = session.get('category')
     total = len(QUIZ_DATA.get(category, []))
-    wrong_answers = session.get('wrong_answers',[])  
+    wrong_answers = session.get('wrong',[])  
     return render_template('result.html', score=score, total=total, wrong_answers=wrong_answers)

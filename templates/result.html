@@ -54,9 +54,9 @@
       <ul>
       {% for w in wrong_answers %}
           <li>
-              <strong>{}</strong><br>
-              ❌ 선택: <span style="color:red;">{}</span><br>
-              ✅ 정답: <span style="color:green;">{}</span>
+              <strong>{{ w.question }}</strong><br>
+              ❌ 선택: <span style="color:red;">{{ w.selected }}</span><br>
+              ✅ 정답: <span style="color:green;">{{ w.correct }}</span>
           </li>
       {% endfor %}
       </ul>
