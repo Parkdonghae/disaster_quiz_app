@@ -38,20 +38,33 @@ def quiz():
     if request.method == 'POST':
         selected = request.form.get('option')
         correct = questions[current]['answer']
+
         if selected == correct:
             session['score'] += 1
-        else: 
-            wrong_list= session.get('wrong', []) wrong_list.append({'question' : questions[current]['question'], 
-                 'selected': selected, 'correct': correct })
-        session['wrong'] = wrong_list
-        session['current'] = current + 1
+        else:
+            # 오답 저장 기능 추가
+            wrong = session.get('wrong', [])
+            wrong.append({
+                'question': questions[current]['question'],
+                'selected': selected,
+                'correct': correct
+            })
+            session['wrong'] = wrong
+
+        session['current'] += 1
         current = session['current']
 
-    if current >= len(questions):
-        return redirect(url_for('result'))
+        if current >= len(questions):
+            return redirect(url_for('result'))
 
     question = questions[current]
-    return render_template('quiz.html', question=question['question'], options=question['options'], current=current+1, total=len(questions))
+    return render_template(
+        'quiz.html',
+        question=question['question'],
+        options=question['options'],
+        current=current + 1,
+        total=len(questions)
+    )
 
 @app.route('/result')
 def result():
