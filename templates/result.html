@@ -75,7 +75,7 @@
     <a target='_blank' href="{{ url_for('home') }}">처음으로</a>
 
    <div class="wrong-section">
-        <button class="toggle-btn" xonclick="toggleWrongAnswers()">틀린 문제 확인</button>
+        <button class="toggle-btn" onclick="toggleWrongAnswers()">틀린 문제 확인</button>
         <div id="wrongAnswers" class="wrong-answers">
             {% for item in wrong_answers %}
             <div class="wrong-item">
