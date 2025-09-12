@@ -50,17 +50,21 @@ def quiz():
                 'answer': correct
             })
             session['wrong'] = wrong
-            session['current'] += 1
-            return redirect(url_for('quiz'))    
 
-           question = questions[current]
-           return render_template('quiz.html',
-           question=question['question'],
-           options=question['options'],
-           current=current + 1,
-           total=len(questions)
-    )        
-   
+        session['current'] += 1
+        current = session['current']
+
+        if current >= len(questions):
+            return redirect(url_for('result'))
+
+    question = questions[current]
+    return render_template(
+        'quiz.html',
+        question=question['question'],
+        options=question['options'],
+        current=current + 1,
+        total=len(questions)
+    )
 
 @app.route('/result')
 def result():
