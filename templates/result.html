@@ -79,9 +79,9 @@
         <div id="wrongAnswers" class="wrong-answers">
             {% for item in wrong_answers %}
             <div class="wrong-item">
-                <p><strong>문제:</strong> {}</p>
-                <p>❌ 선택: <strong>{}</strong></p>
-                <p>✅ 정답: <em>{}</em></p>
+                <p><strong>문제:</strong> {{item.question}}</p>
+                <p style="color:red;">❌ 선택: <strong>{{item.selected}}</strong></p>
+                <p style='"color:green;">✅ 정답: <em>{{item.answer}}</em></p>
             </div>
             {% endfor %}
         </div>
