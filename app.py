@@ -47,7 +47,7 @@ def quiz():
             wrong.append({
                 'question': questions[current]['question'],
                 'selected': selected,
-                'correct': correct
+                'answer': correct
             })
             session['wrong'] = wrong
 
