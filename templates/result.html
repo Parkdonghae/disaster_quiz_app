@@ -2,96 +2,61 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>결과 보기</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 18px;
-            padding: 20px;
-            line-height: 1.6;
-            background-color: #f6f6fc;
-        }
-        h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 20px;
-            margin: 15px 0;
-        }
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            font-size: 18px;
-            text-decoration: none;
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
-        }
-        .wrong-section {
-            margin-top: 30px;
-        }
-        .wrong-answers {
-            display: none; /* 기본적으로 숨김 */
-            margin-top: 15px;
-            padding: 15px;
-            border: 1px solid #ccc;
-            background: #fff;
-            border-radius: 8px;
-        }
-        button.toggle-btn {
-            margin-top: 10px;
-            padding: 10px 15px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .wrong-item {
-            margin-bottom: 15px;
-        }
-        .wrong-item strong {
-            color: #d9534f; /* 틀린 답 빨강 */
-        }
-        .wrong-item em {
-            color: #5cb85c; /* 정답 초록 */
-        }
-    </style>
-    <script>
-        function toggleWrongAnswers() {
-            const section = document.getElementById("wrongAnswers");
-            section.style.display = section.style.display === "none" ? "block" : "none";
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>결과 보기</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      padding: 30px;
+      background-color: #f8f9fa;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 20px;
+      margin: 20px 0;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 25px;
+      font-size: 18px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    a:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
     <h1>결과 보기</h1>
-    <p>총 {{total}}문제 중 {{score}}문제 정답!</p>
+    <p>총 {}문제 중 {}문제 정답!</p>
     <a target='_blank' href="{{ url_for('home') }}">처음으로</a>
 
-   <div class="wrong-section">
+    <div class="wrong-section">
         <button class="toggle-btn" onclick="toggleWrongAnswers()">틀린 문제 확인</button>
         <div id="wrongAnswers" class="wrong-answers">
             {% for item in wrong_answers %}
             <div class="wrong-item">
-                <p><strong>문제:</strong> {{item.question}}</p>
-                <p style="color:red;">❌ 선택: <strong>{{item.selected}}</strong></p>
-                <p style='"color:green;">✅ 정답: <em>{{item.answer}}</em></p>
-            </div>
+                <strong>{{wrong.question}}</<sstrong><br>
+                ❌ 선택: <strong>{{wrong.selected}}</strong><br>
+                ✅ 정답: {{wrong.correct}}</li>
             {% endfor %}
-        </div>
-    </div>
-
-    <script>
-        function toggleWrongAnswers() {
-            const section = document.getElementById("wrongAnswers");
-            section.style.display = section.style.display === "none" ? "block" : "none";
-        }
-    </script>
+   </ul>
 </body>
 </html>
