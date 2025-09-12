@@ -23,7 +23,6 @@ def start(category):
     session['category'] = category
     session['score'] = 0
     session['current'] = 0
-    session['wrong'] = []
     return redirect(url_for('quiz'))
 
 @app.route('/quiz', methods=['GET', 'POST'])
@@ -38,34 +37,20 @@ def quiz():
     if request.method == 'POST':
         selected = request.form.get('option')
         correct = questions[current]['answer']
-
         if selected == correct:
             session['score'] += 1
-        else:
-            # 오답 저장 기능 추가
-            wrong = session.get('wrong', [])
-            wrong.append({
-                'question': questions[current]['question'],
-                'selected': selected,
-                'answer': correct
-            })
-            session['wrong'] = wrong
-            session['current'] += 1
-            return redirect(url_for('quiz'))    
+        session['current'] += 1
+        current = session['current']
 
-           question = questions[current]
-           return render_template('quiz.html',
-           question=question['question'],
-           options=question['options'],
-           current=current + 1,
-           total=len(questions)
-    )        
-   
+    if current >= len(questions):
+        return redirect(url_for('result'))
+
+    question = questions[current]
+    return render_template('quiz.html', question=question['question'], options=question['options'], current=current+1, total=len(questions))
 
 @app.route('/result')
 def result():
     score = session.get('score', 0)
     category = session.get('category')
     total = len(QUIZ_DATA.get(category, []))
-    wrong_answers = session.get('wrong',[])  
-    return render_template('result.html', score=score, total=total, wrong_answers=wrong_answers)
+    return render_template('result.html', score=score, total=total)
