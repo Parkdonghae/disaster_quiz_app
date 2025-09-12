@@ -44,19 +44,24 @@
   </style>
 </head>
 <body>
-    <h1>결과 보기</h1>
-    <p>총 {}문제 중 {}문제 정답!</p>
-    <a target='_blank' href="{{ url_for('home') }}">처음으로</a>
+  <h1>결과 보기</h1>
+  <p>총 {total}문제 중 {score}문제 정답!</p>
+  <a target="_blank" target='_blank' href="{{ url_for('home') }}">처음으로</a>
 
-    <div class="wrong-section">
-        <button class="toggle-btn" onclick="toggleWrongAnswers()">틀린 문제 확인</button>
-        <div id="wrongAnswers" class="wrong-answers">
-            {% for item in wrong_answers %}
-            <div class="wrong-item">
-                <strong>{{wrong.question}}</<strong><br>
-                ❌ 선택: <strong>{{wrong.selected}}<br>
-                ✅ 정답: {{wrong.correct}}</li>
-            {% endfor %}
-   </ul>
+  <!-- 틀린 문제 보기 영역 -->
+  <h2>틀린 문제 확인</h2>
+  {% if wrong_answers %}
+      <ul>
+      {% for w in wrong_answers %}
+          <li>
+              <strong>{{wrong.question}}}</strong><br>
+              ❌ 선택: {{wrong.selected}}<br>
+              ✅ 정답: {{wrong.correct}}
+          </li>
+      {% endfor %}
+      </ul>
+  {% else %}
+      <p>모든 문제를 맞혔습니다! 🎉</p>
+  {% endif %}
 </body>
 </html>
