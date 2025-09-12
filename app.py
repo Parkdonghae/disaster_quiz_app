@@ -53,4 +53,6 @@ def result():
     score = session.get('score', 0)
     category = session.get('category')
     total = len(QUIZ_DATA.get(category, []))
-    return render_template('result.html', score=score, total=total)
+    wrong_answers = session.get('wrong', [])
+    return render_template('result.html', score=score, total=total, wrong_answers=wrong_answers)
+   
